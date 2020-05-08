@@ -91,7 +91,7 @@ public class HocsinhService{
         if (hocsinh.isPresent()) {
             repository.deleteById(id);
         } else {
-            throw new Exception("No Congty record exist for given id");
+            throw new Exception("No hinh anh record exist for given id");
         }
     }
 
