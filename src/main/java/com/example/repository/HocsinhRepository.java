@@ -18,5 +18,5 @@ interface HocsinhRepository extends JpaRepository<HocsinhEntity, Long> {
     List<HocsinhEntity> findHocsinhByMagiaovien(@Param("magiaovien") long magiaovien);
 
     @Query("SELECT hs FROM HocsinhEntity hs WHERE hs.malop = ?1")
-    List<HocsinhEntity> findHocsinhByMalop(@Param("magiaovien") long malop);
+    List<HocsinhEntity> findHocsinhByMalop(@Param("malop") long malop);
 }

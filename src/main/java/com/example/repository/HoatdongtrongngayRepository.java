@@ -6,7 +6,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+import java.util.List;
+
 @Repository
 public
 interface HoatdongtrongngayRepository extends JpaRepository<HoatdongtrongngayEntity, Long> {
+    @Query("SELECT hd FROM HoatdongtrongngayEntity hd WHERE hd.ten like concat(concat('%', :ten), '%')")
+    List<HocsinhEntity> findHoatdongByTenLike(@Param("ten") String ten);
+
+    @Query("SELECT hd FROM HoatdongtrongngayEntity hd WHERE hd.ngay = ?1")
+    List<HocsinhEntity> findHoatdongByNgay(@Param("ngay") Date ngay);
 }
