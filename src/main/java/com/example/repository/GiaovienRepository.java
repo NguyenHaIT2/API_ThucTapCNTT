@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public
 interface GiaovienRepository extends JpaRepository<GiaovienEntity, Long> {
-    List<HocsinhEntity> findGiaovienEntitiesByTen(String ten);
+    List<GiaovienEntity> findGiaovienEntitiesByTen(String ten);
 }

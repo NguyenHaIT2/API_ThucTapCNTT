@@ -16,7 +16,8 @@ public class GiaovienService{
     GiaovienRepository repository;
     public List<GiaovienEntity> getGiaovienByTenLike(String ten) {
         List<GiaovienEntity> giaovienlist = new ArrayList<GiaovienEntity>();
-        repository.findGiaovienEntitiesByTen(ten);
+//        repository.findGiaovienEntitiesByTen(ten).forEach(giaovienlist::add);
+        giaovienlist = repository.findGiaovienEntitiesByTen(ten);
         if (giaovienlist.size() > 0) {
             return giaovienlist;
         } else {
