@@ -13,8 +13,8 @@ import java.util.List;
 public
 interface HoatdongtrongngayRepository extends JpaRepository<HoatdongtrongngayEntity, Long> {
     @Query("SELECT hd FROM HoatdongtrongngayEntity hd WHERE hd.ten like concat(concat('%', :ten), '%')")
-    List<HocsinhEntity> findHoatdongByTenLike(@Param("ten") String ten);
+    List<HoatdongtrongngayEntity> findHoatdongByTenLike(@Param("ten") String ten);
 
     @Query("SELECT hd FROM HoatdongtrongngayEntity hd WHERE hd.ngay = ?1")
-    List<HocsinhEntity> findHoatdongByNgay(@Param("ngay") Date ngay);
+    List<HoatdongtrongngayEntity> findHoatdongByNgay(@Param("ngay") Date ngay);
 }
