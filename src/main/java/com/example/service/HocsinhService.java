@@ -63,6 +63,36 @@ public class HocsinhService{
             throw new Exception("No hoc sinh record exist for given id");
         }
     }
-    
+
+    public HocsinhEntity createOrUpdateHocsinh(HocsinhEntity entity) throws Exception {
+        Optional<HocsinhEntity> hocsinh  = repository.findById(entity.getId());
+
+        if (hocsinh.isPresent())
+        {
+            HocsinhEntity newEntity = hocsinh.get();
+            newEntity.setTen(entity.getTen());
+            newEntity.setNgaysinh(entity.getNgaysinh());
+            newEntity.setMagiaovien(entity.getMagiaovien());
+            newEntity.setMaphuhuynh(entity.getMaphuhuynh());
+            newEntity.setMalop(entity.getMalop());
+            newEntity = repository.save(newEntity);
+            return newEntity;
+        }
+        else
+        {
+            entity = repository.save(entity);
+            return entity;
+        }
+    }
+
+    public void deleteHocsinhById(Long id) throws Exception {
+        Optional<HocsinhEntity> hocsinh  = repository.findById(id);
+
+        if (hocsinh.isPresent()) {
+            repository.deleteById(id);
+        } else {
+            throw new Exception("No Congty record exist for given id");
+        }
+    }
 
 }
