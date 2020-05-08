@@ -4,6 +4,7 @@ import com.example.entity.GiaovienEntity;
 import com.example.entity.HocsinhEntity;
 import com.example.repository.GiaovienRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,16 @@ import java.util.Optional;
 public class GiaovienService{
     @Autowired
     GiaovienRepository repository;
+    public List<GiaovienEntity> getAllGiaovien() {
+        List<GiaovienEntity> giaovienlist = new ArrayList<GiaovienEntity>();
+        repository.findAll(Sort.by("ten").descending()).forEach(giaovienlist::add);
+
+        if (giaovienlist.size() > 0) {
+            return giaovienlist;
+        } else {
+            return new ArrayList<GiaovienEntity>();
+        }
+    }
     public List<GiaovienEntity> getGiaovienByTenLike(String ten) {
         List<GiaovienEntity> giaovienlist = new ArrayList<GiaovienEntity>();
 //        repository.findGiaovienEntitiesByTen(ten).forEach(giaovienlist::add);

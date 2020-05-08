@@ -5,6 +5,7 @@ import com.example.entity.HoatdongtrongngayEntity;
 import com.example.entity.HocsinhEntity;
 import com.example.repository.HoatdongtrongngayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,16 @@ import java.util.Optional;
 public class HoatdongtrongngayService{
     @Autowired
     HoatdongtrongngayRepository repository;
+    public List<HoatdongtrongngayEntity> getAllHoatdong() {
+        List<HoatdongtrongngayEntity> hoatdonglist = new ArrayList<HoatdongtrongngayEntity>();
+        repository.findAll(Sort.by("ten").descending()).forEach(hoatdonglist::add);
+
+        if (hoatdonglist.size() > 0) {
+            return hoatdonglist;
+        } else {
+            return new ArrayList<HoatdongtrongngayEntity>();
+        }
+    }
     public List<HoatdongtrongngayEntity> getHoatdongByTenLike(String ten) {
         List<HoatdongtrongngayEntity> hoatdonglist = new ArrayList<HoatdongtrongngayEntity>();
         repository.findHoatdongByTenLike(ten).forEach(hoatdonglist::add);

@@ -4,6 +4,7 @@ import com.example.entity.HinhanhEntity;
 import com.example.entity.HocsinhEntity;
 import com.example.repository.HinhanhRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +16,16 @@ import java.util.Optional;
 public class HinhanhService{
     @Autowired
     HinhanhRepository repository;
+    public List<HinhanhEntity> getAllHinhanh() {
+        List<HinhanhEntity> hinhanhlist = new ArrayList<HinhanhEntity>();
+        repository.findAll(Sort.by("ten").descending()).forEach(hinhanhlist::add);
+
+        if (hinhanhlist.size() > 0) {
+            return hinhanhlist;
+        } else {
+            return new ArrayList<HinhanhEntity>();
+        }
+    }
     public HinhanhEntity getHinhanhById(Long id) throws Exception {
         Optional<HinhanhEntity> hinhanh  = repository.findById(id);
 
