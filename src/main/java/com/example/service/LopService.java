@@ -25,7 +25,7 @@ public class LopService{
             return new ArrayList<LopEntity>();
         }
     }
-    public LopEntity getLopById(Long id) throws Exception {
+    public LopEntity getLopById(long id) throws Exception {
         Optional<LopEntity> lop  = repository.findById(id);
 
         if (lop.isPresent()) {
@@ -71,7 +71,7 @@ public class LopService{
         }
     }
 
-    public void deleteLopById(Long id) throws Exception {
+    public void deleteLopById(long id) throws Exception {
         Optional<LopEntity> lop  = repository.findById(id);
 
         if (lop.isPresent()) {

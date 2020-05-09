@@ -64,7 +64,7 @@ public class HoatdongtrongngayService{
         }
     }
 
-    public void deleteHoatdongById(Long id) throws Exception {
+    public void deleteHoatdongById(long id) throws Exception {
         Optional<HoatdongtrongngayEntity> hoatdong  = repository.findById(id);
 
         if (hoatdong.isPresent()) {

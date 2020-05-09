@@ -35,7 +35,7 @@ public class GiaovienService{
             return new ArrayList<GiaovienEntity>();
         }
     }
-    public GiaovienEntity getGiaovienById(Long id) throws Exception {
+    public GiaovienEntity getGiaovienById(long id) throws Exception {
         Optional<GiaovienEntity> giaovien = repository.findById(id);
 
         if (giaovien.isPresent()) {
@@ -64,7 +64,7 @@ public class GiaovienService{
         }
     }
 
-    public void deleteGiaovienById(Long id) throws Exception {
+    public void deleteGiaovienById(long id) throws Exception {
         Optional<GiaovienEntity> giaovien  = repository.findById(id);
 
         if (giaovien.isPresent()) {

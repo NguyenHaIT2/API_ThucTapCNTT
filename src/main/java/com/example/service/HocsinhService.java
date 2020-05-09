@@ -54,7 +54,7 @@ public class HocsinhService{
         }
     }
 
-    public HocsinhEntity getHocsinhById(Long id) throws Exception {
+    public HocsinhEntity getHocsinhById(long id) throws Exception {
         Optional<HocsinhEntity> hocsinh  = repository.findById(id);
 
         if (hocsinh.isPresent()) {
@@ -85,7 +85,7 @@ public class HocsinhService{
         }
     }
 
-    public void deleteHocsinhById(Long id) throws Exception {
+    public void deleteHocsinhById(long id) throws Exception {
         Optional<HocsinhEntity> hocsinh  = repository.findById(id);
 
         if (hocsinh.isPresent()) {

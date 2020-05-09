@@ -72,7 +72,7 @@ public class HinhanhService{
         }
     }
 
-    public void deleteHinhanhById(Long id) throws Exception {
+    public void deleteHinhanhById(long id) throws Exception {
         Optional<HinhanhEntity> hinhanh  = repository.findById(id);
 
         if (hinhanh.isPresent()) {

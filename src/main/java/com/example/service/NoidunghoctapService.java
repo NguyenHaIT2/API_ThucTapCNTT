@@ -26,7 +26,7 @@ public class NoidunghoctapService{
             return new ArrayList<NoidunghoctapEntity>();
         }
     }
-    public NoidunghoctapEntity getNoidungById(Long id) throws Exception {
+    public NoidunghoctapEntity getNoidungById(long id) throws Exception {
         Optional<NoidunghoctapEntity> noidung  = repository.findById(id);
 
         if (noidung.isPresent()) {
@@ -73,7 +73,7 @@ public class NoidunghoctapService{
         }
     }
 
-    public void deleteNoidungById(Long id) throws Exception {
+    public void deleteNoidungById(long id) throws Exception {
         Optional<NoidunghoctapEntity> noidung  = repository.findById(id);
 
         if (noidung.isPresent()) {

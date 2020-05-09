@@ -34,7 +34,7 @@ public class PhuhuynhService{
             return new ArrayList<PhuhuynhEntity>();
         }
     }
-    public PhuhuynhEntity getPhuhuynhById(Long id) throws Exception {
+    public PhuhuynhEntity getPhuhuynhById(long id) throws Exception {
         Optional<PhuhuynhEntity> phuhuynh = repository.findById(id);
 
         if (phuhuynh.isPresent()) {
@@ -64,7 +64,7 @@ public class PhuhuynhService{
         }
     }
 
-    public void deletePhuhuynhById(Long id) throws Exception {
+    public void deletePhuhuynhById(long id) throws Exception {
         Optional<PhuhuynhEntity> phuhuynh  = repository.findById(id);
 
         if (phuhuynh.isPresent()) {
