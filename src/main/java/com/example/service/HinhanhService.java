@@ -26,7 +26,7 @@ public class HinhanhService{
             return new ArrayList<HinhanhEntity>();
         }
     }
-    public HinhanhEntity getHinhanhById(Long id) throws Exception {
+    public HinhanhEntity getHinhanhById(long id) throws Exception {
         Optional<HinhanhEntity> hinhanh  = repository.findById(id);
 
         if (hinhanh.isPresent()) {
