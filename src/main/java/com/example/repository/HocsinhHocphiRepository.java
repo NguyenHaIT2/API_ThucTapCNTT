@@ -6,7 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public
 interface HocsinhHocphiRepository extends JpaRepository<HocsinhHocphiEntity, Long> {
+    List<HocsinhHocphiEntity> findByMahocsinh(long mahocsinh);
+    List<HocsinhHocphiEntity> findByTinhtrang(int t);
 }
