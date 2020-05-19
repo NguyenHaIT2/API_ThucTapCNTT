@@ -44,7 +44,7 @@ public class NoidunghoctapService{
             return new ArrayList<NoidunghoctapEntity>();
         }
     }
-    public List<NoidunghoctapEntity> getNoidungByThoigian(int nam, int thang, int tuan) {
+    public List<NoidunghoctapEntity> getNoidungByThoigian(int nam, int thang, int tuan) throws Exception{
         List<NoidunghoctapEntity> noidunglist = new ArrayList<NoidunghoctapEntity>();
         repository.findByNamAndThangAndTuan(nam, thang, tuan).forEach(noidunglist::add);
         if (noidunglist.size() > 0) {
