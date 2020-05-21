@@ -57,6 +57,7 @@ public class TheodoihoatdongtrongngayController {
 		List<HinhanhEntity> newHinhanhEntity = new ArrayList<HinhanhEntity>();
 		newHinhanhEntity.add(newHinhanh);
 		newHoatdong.setHinhanhsById(newHinhanhEntity);
+		hoatdongtrongngayService.createOrUpdateHoatdong(newHoatdong);
 		
 		List<HoatdongtrongngayEntity> listHoatdongtrongngay = hoatdongtrongngayService.getAllHoatdong();
 		if(listHoatdongtrongngay.isEmpty()) {
