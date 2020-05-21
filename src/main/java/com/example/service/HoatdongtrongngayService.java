@@ -73,4 +73,9 @@ public class HoatdongtrongngayService{
             throw new Exception("No Hoat dong record exist for given id");
         }
     }
+    public long lastID() {
+    	List<HoatdongtrongngayEntity> hoatdonglist = new ArrayList<HoatdongtrongngayEntity>();
+    	repository.findAll(Sort.by("ten").descending()).forEach(hoatdonglist::add);
+    	return repository.count();
+    }
 }

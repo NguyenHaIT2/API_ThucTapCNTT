@@ -81,4 +81,9 @@ public class HinhanhService{
             throw new Exception("No hinh anh record exist for given id");
         }
     }
+    public long lastID() {
+    	List<HinhanhEntity> hinhanhlist = new ArrayList<HinhanhEntity>();
+    	repository.findAll(Sort.by("ten").descending()).forEach(hinhanhlist::add);
+    	return repository.count();
+    }
 }
