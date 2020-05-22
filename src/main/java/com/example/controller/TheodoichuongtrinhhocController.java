@@ -42,8 +42,8 @@ public class TheodoichuongtrinhhocController {
         return new ResponseEntity<List<NoidunghoctapEntity>>(listNoidunghoctap,HttpStatus.OK);
     }
 
-    // Danh sach noi dung hoc tap theo thoi gian
-    @RequestMapping(value = "/noidunghoctap/",method = RequestMethod.GET)
+    // Tim kiem noi dung hoc tap theo thoi gian
+    @RequestMapping(value = "/noidunghoctap/phuhuynh/timkiemnoidunghoctaptheothoigian",method = RequestMethod.GET)
     public ResponseEntity<List<NoidunghoctapEntity>> listNoidunghoctapByTime(int nam, int thang, int tuan) throws Exception {
         List<NoidunghoctapEntity> listNoidunghoctap = noidunghoctapService.getNoidungByThoigian(nam, thang, tuan);
         if(listNoidunghoctap.isEmpty()) {
@@ -63,7 +63,7 @@ public class TheodoichuongtrinhhocController {
     }
 
     // Them noi dung hoc tap
-    @RequestMapping(value = "/noidunghoctap/giaovien/",method = RequestMethod.POST)
+    @RequestMapping(value = "/noidunghoctap/giaovien/capnhapchuongtrinhhoc",method = RequestMethod.POST)
     public ResponseEntity<List<NoidunghoctapEntity>> themNoidunghoctap(String ten, int nam, int thang, int tuan) throws Exception{
 
         NoidunghoctapEntity newNoidung = new NoidunghoctapEntity();
