@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.entity.HinhanhEntity;
+import com.example.entity.HoatdongtrongngayEntity;
 import com.example.entity.HocsinhEntity;
 import com.example.entity.NoidunghoctapEntity;
 import com.example.repository.NoidunghoctapRepository;
@@ -82,5 +83,9 @@ public class NoidunghoctapService{
             throw new Exception("No noi dung record exist for given id");
         }
     }
-
+    public long lastID() {
+        List<NoidunghoctapEntity> noidunghoctapEntities = new ArrayList<NoidunghoctapEntity>();
+        repository.findAll(Sort.by("ten").descending()).forEach(noidunghoctapEntities::add);
+        return repository.count();
+    }
 }
