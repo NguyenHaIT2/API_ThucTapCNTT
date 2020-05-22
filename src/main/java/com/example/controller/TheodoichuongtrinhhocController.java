@@ -63,7 +63,7 @@ public class TheodoichuongtrinhhocController {
     }
 
     // Them noi dung hoc tap
-    @RequestMapping(value = "/noidunghoctap/giaovien/capnhapchuongtrinhhoc",method = RequestMethod.POST)
+    @RequestMapping(value = "/noidunghoctap/giaovien/capnhapnoidunghoctap",method = RequestMethod.POST)
     public ResponseEntity<List<NoidunghoctapEntity>> themNoidunghoctap(String ten, int nam, int thang, int tuan) throws Exception{
 
         NoidunghoctapEntity newNoidung = new NoidunghoctapEntity();
