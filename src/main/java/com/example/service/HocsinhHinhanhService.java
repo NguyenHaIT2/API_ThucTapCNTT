@@ -1,7 +1,9 @@
 package com.example.service;
 
 import com.example.entity.HocsinhDenEntity;
+import com.example.entity.HocsinhEntity;
 import com.example.entity.HocsinhHinhanhEntity;
+import com.example.entity.HocsinhHinhanhEntityPK;
 import com.example.repository.HocsinhHinhanhRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -45,7 +47,26 @@ public class HocsinhHinhanhService{
             return new ArrayList<HocsinhHinhanhEntity>();
         }
     }
+    public HocsinhHinhanhEntity createOrUpdateHocsinhhinhanh(HocsinhHinhanhEntity entity) throws Exception {
+    	HocsinhHinhanhEntityPK prkey = new HocsinhHinhanhEntityPK();
+    	prkey.setMahinhanh(entity.getMahinhanh());
+    	prkey.setMahocsinh(entity.getMahocsinh());
+        Optional<HocsinhHinhanhEntity> hocsinhhinhanh  = repository.findById(prkey);
 
+        if (hocsinhhinhanh.isPresent())
+        {
+        	HocsinhHinhanhEntity newEntity = hocsinhhinhanh.get();
+            newEntity.setMahinhanh(entity.getMahinhanh());
+            newEntity.setMahocsinh(entity.getMahocsinh());         
+            newEntity = repository.save(newEntity);
+            return newEntity;
+        }
+        else
+        {
+            entity = repository.save(entity);
+            return entity;
+        }
+    }
 
 
 }

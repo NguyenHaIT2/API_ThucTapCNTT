@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.service.HinhanhService;
 import com.example.service.HoatdongtrongngayService;
 import com.example.service.HocsinhHinhanhService;
+import com.example.service.HocsinhService;
+import com.example.service.LopHoatdongService;
+import com.example.service.LopService;
 import com.example.entity.*;
 import java.util.List;
 @RestController
@@ -28,7 +31,10 @@ public class TheodoihoatdongtrongngayController {
 	HinhanhService hinhanhService;
 	
 	@Autowired
-	HocsinhHinhanhService hocsiinhinhanhService;
+	HocsinhHinhanhService hocsinhinhanhService;
+	
+	@Autowired
+	HocsinhService hocsinhService;
 	
 	//Danh sach hoat dong trong ngay. Trang chinh
 	@RequestMapping(value = "/hoatdongtrongngay/",method = RequestMethod.GET)
@@ -41,10 +47,10 @@ public class TheodoihoatdongtrongngayController {
 	}
 	
 	//Them moi hoat dong trong ngay. 
-	//Input: String image, HoatdongtrongngayEntity
+	//Input: String image, Date : Thoi gian cua hoat dong
 	//Output: Danh sach hinh anh da cap nhat
-	@RequestMapping(value = "/hoatdongtrongngay/giaovien/",method = RequestMethod.POST)
-	public ResponseEntity<List<HoatdongtrongngayEntity>> themHoatdongtrongngay(String image,Date thoigian) throws Exception{
+	@RequestMapping(value = "/hoatdongtrongngay/giaovien/capnhathoatdong/",method = RequestMethod.POST)
+	public ResponseEntity<List<HoatdongtrongngayEntity>> themHoatdongtrongngay(String image,Date thoigian,String tenhocsinh) throws Exception{
 		HinhanhEntity newHinhanh = new HinhanhEntity();
 		newHinhanh.setId(hinhanhService.lastID()+1);
 		newHinhanh.setImage(image);
@@ -59,11 +65,36 @@ public class TheodoihoatdongtrongngayController {
 		newHoatdong.setHinhanhsById(newHinhanhEntity);
 		hoatdongtrongngayService.createOrUpdateHoatdong(newHoatdong);
 		
+		HocsinhHinhanhEntity newHocsinhhinhanh = new HocsinhHinhanhEntity();
+		List<HocsinhEntity> danhsachHocsinh = hocsinhService.getHocsinhByTenLike(tenhocsinh);
+		HocsinhEntity hocsinh = danhsachHocsinh.get(0);
+		newHocsinhhinhanh.setMahocsinh(hocsinh.getId());
+		newHocsinhhinhanh.setMahinhanh(newHinhanh.getId());
+		hocsinhinhanhService.createOrUpdateHocsinhhinhanh(newHocsinhhinhanh);
+		
 		List<HoatdongtrongngayEntity> listHoatdongtrongngay = hoatdongtrongngayService.getAllHoatdong();
 		if(listHoatdongtrongngay.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<HoatdongtrongngayEntity>>(listHoatdongtrongngay,HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value = "/hoatdongtrongngay/phuhuynh/Timkiemhoatdongcuahocsinh/", method = RequestMethod.GET)
+	public ResponseEntity<List<HinhanhEntity>> timkiemHoatdongtrongngay(String name, Date thoigian) throws Exception{
+		List<HocsinhEntity> danhsachHocsinh = hocsinhService.getHocsinhByTenLike(name);
+		HocsinhEntity hocsinh = danhsachHocsinh.get(0);
+		List<HocsinhHinhanhEntity> danhsachHSHinhanh = hocsinhinhanhService.getHocsinhHinhanhByMahocsinh(hocsinh.getId());
+		List<HinhanhEntity> danhsachHinhanh = new ArrayList<HinhanhEntity>();
+		for (HocsinhHinhanhEntity hshinhanhEntity : danhsachHSHinhanh) {
+			HinhanhEntity result = hinhanhService.getHinhanhById(hshinhanhEntity.getMahinhanh());
+			danhsachHinhanh.add(result);
+		}
+		if(danhsachHinhanh.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<HinhanhEntity>>(danhsachHinhanh,HttpStatus.OK);
+	}
+	
 }
 
