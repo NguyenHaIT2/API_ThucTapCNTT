@@ -35,7 +35,7 @@ public class HocsinhHocphiService{
             throw new Exception("No obj record exist for given id");
         }
     }
-    public List<HocsinhHocphiEntity> getHocphiByTinhtrang(int t) {
+    public List<HocsinhHocphiEntity> getHocphiByTinhtrang(int t) throws Exception{
         List<HocsinhHocphiEntity> tt = new ArrayList<HocsinhHocphiEntity>();
         repository.findByTinhtrang(t).forEach(tt::add);
         if (tt.size() > 0) {
@@ -44,7 +44,17 @@ public class HocsinhHocphiService{
             return new ArrayList<HocsinhHocphiEntity>();
         }
     }
-    public List<HocsinhHocphiEntity> getHocphiByHocsinh(long mahocsinh ) {
+
+    public List<HocsinhHocphiEntity> getHocphiByThang(int nam, int thang) throws Exception{
+        List<HocsinhHocphiEntity> t = new ArrayList<HocsinhHocphiEntity>();
+        repository.findByNamAndThang(nam, thang).forEach(t::add);
+        if (t.size() > 0) {
+            return t;
+        } else {
+            return new ArrayList<HocsinhHocphiEntity>();
+        }
+    }
+    public List<HocsinhHocphiEntity> getHocphiByHocsinh(long mahocsinh ) throws Exception{
         List<HocsinhHocphiEntity> tt = new ArrayList<HocsinhHocphiEntity>();
         repository.findByMahocsinh(mahocsinh).forEach(tt::add);
         if (tt.size() > 0) {
@@ -64,6 +74,24 @@ public class HocsinhHocphiService{
             newEntity.setNam(entity.getNam());
             newEntity.setTinhtrang(entity.getTinhtrang());
             newEntity.setSotien(entity.getSotien());
+            newEntity = repository.save(newEntity);
+            return newEntity;
+        }
+        else
+        {
+            entity = repository.save(entity);
+            return entity;
+        }
+    }
+
+    // cap nhạt trang thai thanh toan
+    public HocsinhHocphiEntity capnhattrangthai(HocsinhHocphiEntity entity) throws Exception {
+        Optional<HocsinhHocphiEntity> hp  = repository.findById(entity.getId());
+
+        if (hp.isPresent())
+        {
+            HocsinhHocphiEntity newEntity = hp.get();
+            newEntity.setTinhtrang(entity.getTinhtrang());
             newEntity = repository.save(newEntity);
             return newEntity;
         }
