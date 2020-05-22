@@ -1,9 +1,6 @@
 package com.example.service;
 
-import com.example.entity.HocsinhEntity;
-import com.example.entity.LopHoatdongEntity;
-import com.example.entity.LopNoidunghoctapEntity;
-import com.example.entity.NoidunghoctapEntity;
+import com.example.entity.*;
 import com.example.repository.LopNoidunghoctapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -11,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LopNoidunghoctapService{
@@ -35,4 +33,6 @@ public class LopNoidunghoctapService{
             return new ArrayList<LopNoidunghoctapEntity>();
         }
     }
+
+
 }
