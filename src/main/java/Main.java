@@ -1,4 +1,4 @@
-import org.hibernate.HibernateException;
+/*import org.hibernate.HibernateException;
 import org.hibernate.Metamodel;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
@@ -44,4 +44,4 @@ public class Main {
             session.close();
         }
     }
-}
+}*/

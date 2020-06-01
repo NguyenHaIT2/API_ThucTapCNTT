@@ -47,7 +47,7 @@ public class TheodoichuongtrinhhocController {
     }
 
     // Danh sach noi dung hoc tap theo lop
-    @RequestMapping(value = "/noidunghoctap/",method = RequestMethod.GET)
+    @RequestMapping(value = "/noidunghoctap/lop",method = RequestMethod.GET)
     public ResponseEntity<List<LopNoidunghoctapEntity>> listNoidunghoctapByMalop(int malop) throws Exception {
         List<LopNoidunghoctapEntity> listNoidunghoctap = lopNoidunghoctapService.getLopNoidunghoctapByMalop(malop);
         if(listNoidunghoctap.isEmpty()) {
