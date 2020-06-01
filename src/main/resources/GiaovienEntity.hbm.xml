@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.example.entity.GiaovienEntity" table="giaovien" schema="school">
+    <class name="entity.GiaovienEntity" table="giaovien" schema="school">
         <id name="id">
             <column name="id" sql-type="bigint"/>
         </id>
@@ -20,26 +20,26 @@
         <property name="groupid">
             <column name="groupid" sql-type="int" not-null="true"/>
         </property>
-        <many-to-one name="groupByGroupid" class="com.example.entity.GroupEntity">
+        <many-to-one name="groupByGroupid" class="entity.GroupEntity">
             <column name="groupid" not-null="true"/>
         </many-to-one>
         <set name="hocsinhsById" inverse="true">
             <key>
                 <column name="magiaovien" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.HocsinhEntity"/>
+            <one-to-many not-found="ignore" class="entity.HocsinhEntity"/>
         </set>
         <set name="lopsById" inverse="true">
             <key>
                 <column name="magiaovien" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.LopEntity"/>
+            <one-to-many not-found="ignore" class="entity.LopEntity"/>
         </set>
         <set name="thetranghangthangsById" inverse="true">
             <key>
                 <column name="magiaovien" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.ThetranghangthangEntity"/>
+            <one-to-many not-found="ignore" class="entity.ThetranghangthangEntity"/>
         </set>
     </class>
 </hibernate-mapping>

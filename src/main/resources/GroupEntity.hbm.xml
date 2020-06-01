@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.example.entity.GroupEntity" table="group" schema="school">
+    <class name="entity.GroupEntity" table="group" schema="school">
         <id name="id">
             <column name="id" sql-type="int"/>
         </id>
@@ -15,25 +15,25 @@
             <key>
                 <column name="groupid" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.AdminEntity"/>
+            <one-to-many not-found="ignore" class="entity.AdminEntity"/>
         </set>
         <set name="giaoviensById" inverse="true">
             <key>
                 <column name="groupid" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.GiaovienEntity"/>
+            <one-to-many not-found="ignore" class="entity.GiaovienEntity"/>
         </set>
         <set name="groupRolesById" inverse="true">
             <key>
                 <column name="groupid"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.GroupRoleEntity"/>
+            <one-to-many not-found="ignore" class="entity.GroupRoleEntity"/>
         </set>
         <set name="phuhuynhsById" inverse="true">
             <key>
                 <column name="groupid" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.PhuhuynhEntity"/>
+            <one-to-many not-found="ignore" class="entity.PhuhuynhEntity"/>
         </set>
     </class>
 </hibernate-mapping>

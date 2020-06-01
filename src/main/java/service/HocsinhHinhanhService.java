@@ -1,0 +1,69 @@
+package service;
+
+import entity.HocsinhHinhanhEntity;
+import entity.HocsinhHinhanhEntityPK;
+import repository.HocsinhHinhanhRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class HocsinhHinhanhService{
+    @Autowired
+    HocsinhHinhanhRepository repository;
+    public List<HocsinhHinhanhEntity> getAllHocsinhHinhanh() {
+        List<HocsinhHinhanhEntity> list = new ArrayList<HocsinhHinhanhEntity>();
+        repository.findAll(Sort.by("mahocsinh").descending()).forEach(list::add);
+
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return new ArrayList<HocsinhHinhanhEntity>();
+        }
+    }
+    public List<HocsinhHinhanhEntity> getHocsinhHinhanhByMahocsinh(long mahocsinh ) throws Exception{
+        List<HocsinhHinhanhEntity> list = new ArrayList<HocsinhHinhanhEntity>();
+        repository.findByMahocsinh(mahocsinh).forEach(list::add);
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return new ArrayList<HocsinhHinhanhEntity>();
+        }
+    }
+
+    public List<HocsinhHinhanhEntity> getHocsinhHinhanhByMahinhanh(long mahinhanh) throws Exception{
+        List<HocsinhHinhanhEntity> list = new ArrayList<HocsinhHinhanhEntity>();
+        repository.findByMahinhanh(mahinhanh).forEach(list::add);
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return new ArrayList<HocsinhHinhanhEntity>();
+        }
+    }
+    public HocsinhHinhanhEntity createOrUpdateHocsinhhinhanh(HocsinhHinhanhEntity entity) throws Exception {
+    	HocsinhHinhanhEntityPK prkey = new HocsinhHinhanhEntityPK();
+    	prkey.setMahinhanh(entity.getMahinhanh());
+    	prkey.setMahocsinh(entity.getMahocsinh());
+        Optional<HocsinhHinhanhEntity> hocsinhhinhanh  = repository.findById(prkey);
+
+        if (hocsinhhinhanh.isPresent())
+        {
+        	HocsinhHinhanhEntity newEntity = hocsinhhinhanh.get();
+            newEntity.setMahinhanh(entity.getMahinhanh());
+            newEntity.setMahocsinh(entity.getMahocsinh());         
+            newEntity = repository.save(newEntity);
+            return newEntity;
+        }
+        else
+        {
+            entity = repository.save(entity);
+            return entity;
+        }
+    }
+
+
+}

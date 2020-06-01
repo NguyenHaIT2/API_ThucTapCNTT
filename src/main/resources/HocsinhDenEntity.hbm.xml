@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.example.entity.HocsinhDenEntity" table="hocsinh_den" schema="school">
+    <class name="entity.HocsinhDenEntity" table="hocsinh_den" schema="school">
         <id name="id">
             <column name="id" sql-type="bigint"/>
         </id>
@@ -26,10 +26,10 @@
         <property name="image">
             <column name="image" sql-type="varchar(150)" length="150" not-null="true"/>
         </property>
-        <many-to-one name="hocsinhByMahocsinh" class="com.example.entity.HocsinhEntity">
+        <many-to-one name="hocsinhByMahocsinh" class="entity.HocsinhEntity">
             <column name="mahocsinh" not-null="true"/>
         </many-to-one>
-        <many-to-one name="diemdanhdenByMaden" class="com.example.entity.DiemdanhdenEntity">
+        <many-to-one name="diemdanhdenByMaden" class="entity.DiemdanhdenEntity">
             <column name="maden" not-null="true"/>
         </many-to-one>
     </class>

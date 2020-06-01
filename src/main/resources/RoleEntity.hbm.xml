@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.example.entity.RoleEntity" table="role" schema="school">
+    <class name="entity.RoleEntity" table="role" schema="school">
         <id name="id">
             <column name="id" sql-type="int"/>
         </id>
@@ -15,7 +15,7 @@
             <key>
                 <column name="roleid"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.GroupRoleEntity"/>
+            <one-to-many not-found="ignore" class="entity.GroupRoleEntity"/>
         </set>
     </class>
 </hibernate-mapping>

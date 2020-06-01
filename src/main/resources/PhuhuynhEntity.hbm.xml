@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.example.entity.PhuhuynhEntity" table="phuhuynh" schema="school">
+    <class name="entity.PhuhuynhEntity" table="phuhuynh" schema="school">
         <id name="id">
             <column name="id" sql-type="bigint"/>
         </id>
@@ -23,20 +23,20 @@
         <property name="groupid">
             <column name="groupid" sql-type="int" not-null="true"/>
         </property>
-        <many-to-one name="groupByGroupid" class="com.example.entity.GroupEntity">
+        <many-to-one name="groupByGroupid" class="entity.GroupEntity">
             <column name="groupid" not-null="true"/>
         </many-to-one>
         <set name="binhluansById" inverse="true">
             <key>
                 <column name="maphuhuynh" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.BinhluanEntity"/>
+            <one-to-many not-found="ignore" class="entity.BinhluanEntity"/>
         </set>
         <set name="hocsinhsById" inverse="true">
             <key>
                 <column name="maphuhuynh" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.HocsinhEntity"/>
+            <one-to-many not-found="ignore" class="entity.HocsinhEntity"/>
         </set>
     </class>
 </hibernate-mapping>

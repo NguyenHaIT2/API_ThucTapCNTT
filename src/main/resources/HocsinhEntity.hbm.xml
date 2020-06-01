@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.example.entity.HocsinhEntity" table="hocsinh" schema="school">
+    <class name="entity.HocsinhEntity" table="hocsinh" schema="school">
         <id name="id">
             <column name="id" sql-type="bigint"/>
         </id>
@@ -23,38 +23,38 @@
         <property name="malop">
             <column name="malop" sql-type="bigint" not-null="true"/>
         </property>
-        <many-to-one name="giaovienByMagiaovien" class="com.example.entity.GiaovienEntity">
+        <many-to-one name="giaovienByMagiaovien" class="entity.GiaovienEntity">
             <column name="magiaovien" not-null="true"/>
         </many-to-one>
-        <many-to-one name="phuhuynhByMaphuhuynh" class="com.example.entity.PhuhuynhEntity">
+        <many-to-one name="phuhuynhByMaphuhuynh" class="entity.PhuhuynhEntity">
             <column name="maphuhuynh" not-null="true"/>
         </many-to-one>
-        <many-to-one name="lopByMalop" class="com.example.entity.LopEntity">
+        <many-to-one name="lopByMalop" class="entity.LopEntity">
             <column name="malop" not-null="true"/>
         </many-to-one>
         <set name="hocsinhDensById" inverse="true">
             <key>
                 <column name="mahocsinh" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.HocsinhDenEntity"/>
+            <one-to-many not-found="ignore" class="entity.HocsinhDenEntity"/>
         </set>
         <set name="hocsinhHinhanhsById" inverse="true">
             <key>
                 <column name="mahocsinh"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.HocsinhHinhanhEntity"/>
+            <one-to-many not-found="ignore" class="entity.HocsinhHinhanhEntity"/>
         </set>
         <set name="hocsinhHocphisById" inverse="true">
             <key>
                 <column name="mahocsinh" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.HocsinhHocphiEntity"/>
+            <one-to-many not-found="ignore" class="entity.HocsinhHocphiEntity"/>
         </set>
         <set name="thetranghangthangsById" inverse="true">
             <key>
                 <column name="mahocsinh" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="com.example.entity.ThetranghangthangEntity"/>
+            <one-to-many not-found="ignore" class="entity.ThetranghangthangEntity"/>
         </set>
     </class>
 </hibernate-mapping>

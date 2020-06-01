@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.example.entity.ThucdonEntity" table="thucdon" schema="school">
+    <class name="entity.ThucdonEntity" table="thucdon" schema="school">
         <id name="id">
             <column name="id" sql-type="bigint"/>
         </id>
@@ -14,7 +14,7 @@
         <property name="ngay">
             <column name="ngay" sql-type="date" not-null="true"/>
         </property>
-        <many-to-one name="monanByMamonan" class="com.example.entity.MonanEntity">
+        <many-to-one name="monanByMamonan" class="entity.MonanEntity">
             <column name="mamonan" not-null="true"/>
         </many-to-one>
     </class>
